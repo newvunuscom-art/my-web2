@@ -1,0 +1,88 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 20px 20px 20px 20px;
+    color:rgb(49, 39, 31);
+    background-color: #a9cfdf6b;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    gap: 20px;
+    border-bottom:  2px solid #ccc;
+    
+}
+:root {
+  --bg: #ffffff;
+  --text: #111827;
+  --card: #f3f4f6;
+}
+
+body.dark {
+  --bg: #111827;
+  --text: #f9fafb;
+  --card: #1f2933;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  transition: 0.3s;
+}
+
+.card {
+  background: var(--card);
+}
+
+#theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 22px;
+  padding: 10px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+
+.header-left {
+    
+    flex-shrink: 0;
+}
+.aboutme {
+    margin-bottom: 30px;
+}
+.myskills {
+    margin-bottom: 30px;
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.portfolio {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.photo-portfolio {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+.contactme .con {
+    margin-bottom: 10px;
+    width: 70px;
+    height: 50px;
+    
+}
