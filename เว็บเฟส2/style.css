@@ -9,8 +9,127 @@ html {
 section {
     scroll-margin-top: 80px; 
 }
+@media (max-width: 360px) {
+  
+
+    nav {
+        margin: 0;
+        padding: 5px 8px;
+        width:100%;
+    }
+
+    /* โลโก้เล็กลง */
+    .logo img {
+        width: 25px;
+        height: auto;
+    }
+
+    /* เมนู */
+     .menu {
+        display: flex;
+        flex-wrap: nowrap; /* ❗ ห้ามขึ้นบรรทัด */
+        overflow: hidden;  /* กันล้น */
+        gap: 3px;
+        margin: 0;
+        padding: 0;
+    }
+
+    .menu li {
+        list-style: none;
+    }
+
+    .menu a {
+        font-size: 9px; /* บีบสุด */
+        padding: 2px 4px;
+        white-space: nowrap; /* ไม่ให้คำแตก */
+    }
+
+    /* กันล้น */
+
+    /* HERO */
+    .container-pf {
+        display: block;
+        padding: 0 8px;
+        text-align: center;
+    }
+
+    .text-pf {
+        margin-left: 0 !important;
+    }
+
+    .text-pf h1 {
+        font-size: 14px; /* เล็กลงอีก */
+    }
+
+    .text-pf p {
+        font-size: 11px;
+    }
+  .pf-img {
+        width: 100% !important; /* บังคับเต็ม */
+        display: block !important;
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    .pf-img img {
+        width: 170px !important; /* ปรับตรงนี้ได้เลย */
+        height: auto;
+    }
+
+    .icon {
+        margin;
+    }
+    
+    /* ปุ่ม */
+    .text-btn a {
+        font-size: 10px;
+        padding: 5px 10px;
+    }
+
+    /* ABOUT */
+    .container-aboutme {
+        display: block;
+        padding: 0 8px;
+        text-align: center;
+    }
+
+    .about-img img {
+        width: 120px;
+    }
+
+    .abouttext h2 {
+        font-size: 16px;
+    }
+
+    .abouttext p {
+        font-size: 11px;
+        line-height: 1.4;
+    }
+
+    /* NAV */
+    nav {
+        margin: 0;
+        padding: 5px 8px;
+    }
+
+    .menu li {
+        margin: 6px 0;
+    }
+
+}
 @media (max-width: 480px) {
 
+        nav {
+        padding: 4px 8px;
+    }
+
+    .logo img {
+        width: 30px;
+    }
+
+    .menu a {
+        font-size: 12px;
+    }
     /* กันล้น */
     body {
         overflow-x: hidden;
@@ -91,13 +210,22 @@ section {
     
      nav {
         margin: 0;
-        padding: 10px 15px;
+        padding: 5px 10px;
     }
-
+    .logo img{
+        width: 40px;
+    }
     .menu {
+        display: block;
         width: 100%;
-        justify-content: center;
+        text-align: center;
         flex-wrap: wrap; /* กันล้น */
+    }
+    .menu li {
+        margin: 5px 0;
+    }
+    .menu a {
+        font-size: 14px;
     }
     .container-pf,
     .container-aboutme {
@@ -181,8 +309,14 @@ header.scrolled {
 nav {
     display: flex;
     align-items: center;
-    justify-content:space-between;
+    justify-content:center;
     margin: 0 30px;
+}
+
+nav .logo {
+    display: block;
+    position: absolute;
+    left: 0;
 }
 
 
@@ -190,7 +324,7 @@ nav {
     
     display: flex;
     list-style: none;
-    gap: 20px;
+    gap: 10px;
 }
 .menu a  {
     text-decoration: none;
