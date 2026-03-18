@@ -7,60 +7,86 @@ html {
     scroll-behavior: smooth;
 }
 section {
-    scroll-margin-top: 80px; /* เท่าความสูง navbar */
+    scroll-margin-top: 80px; 
 }
-
-@media (max-width: 768px) {
-
+@media (max-width: 480px) {
     .container-pf {
+        flex-direction: column;
         text-align: center;
     }
+}
 
-    .text-pf, .pf-img {
+@media (max-width: 768px) {
+
+     nav {
+        margin: 0;
+        padding: 10px 15px;
+    }
+
+    .menu {
         width: 100%;
-    }
-
-    .pf-img img {
-        width: 250px;
-        margin-top: 20px;
-    }
-}
-@media (max-width: 768px) {
-
-    .container-pf {
-        display: flex;
-        flex-direction: row; /* แนวนอน */
-        align-items: center;
         justify-content: center;
-        gap: 15px;
+        flex-wrap: wrap; /* กันล้น */
+    }
+    .container-pf,
+    .container-aboutme {
+        padding: 0 15px; /* เว้นขอบพอดี */
+        margin: 0 auto;
+    }
+    /* HERO */
+    .container-pf {
+        display:block;
+        flex-direction: row; /* แนวนอน */
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 0 10px;
     }
 
-    .text-pf, .pf-img {
-        width: 50%;
+    .text-pf {
+        width: ;
+        margin:0;
+        padding:0;
+    }
+
+    .text-pf h1 {
+        font-size: 18px; /* ลดให้พอดอ */
+    }
+
+    .text-pf p {
+        font-size: 12px;
+    }
+
+    .pf-img {
+        width: 40%;
+        height: auto;
+        justify-content:flex-end;
     }
 
     .pf-img img {
-        width: 200px; /* ลดขนาดให้พอดอมือถือ */
+        width: 140px; /* ขนาดกำลังดี */
     }
-}
-@media (max-width: 768px) {
 
+
+    /* ABOUT */
     .container-aboutme {
-        display: flex;
-        flex-direction: row; /* แนวนอน */
         align-items: center;
-        gap: 15px;
+        gap: 10px;
+        padding: 0 10px;
     }
 
     .about-img img {
-        width: 200px;
+        width: 140px;
     }
 
     .abouttext {
-        font-size: 12px; /* ลดขนาดตัวอักษร */
+        font-size: 12px;
+        max-width: 100%;
     }
+
 }
 body {
+    overflow-x: hidden ;
     background-color: #121212;
     
 }
@@ -148,7 +174,7 @@ nav .menu :hover{
 .pf-img img {
     animation: glowMove 3s infinite alternate;
     filter: drop-shadow(0 0 30px #fd6f00);
-    width:350px;
+    width:250px;
 }
 
 .text-btn {
@@ -210,6 +236,9 @@ nav .menu :hover{
 .about-img {
     filter: drop-shadow(0 0 30px #fd6f00);
     animation: glowMove 3s infinite alternate;
+}
+.about-img img {
+    width: 250px;
 }
 
 .portfolio {
