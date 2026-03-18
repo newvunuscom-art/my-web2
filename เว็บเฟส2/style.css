@@ -10,14 +10,85 @@ section {
     scroll-margin-top: 80px; 
 }
 @media (max-width: 480px) {
+
+    /* กันล้น */
+    body {
+        overflow-x: hidden;
+    }
+
+    /* HERO */
     .container-pf {
-        flex-direction: column;
+        display: block;
+        padding: 0 10px;
         text-align: center;
     }
+
+    .text-pf {
+        margin-left: 0 !important;
+    }
+
+    .text-pf h1 {
+        font-size: 16px; /* ลดจาก 55px */
+    }
+
+    .text-pf p {
+        font-size: 12px;
+    }
+
+    .pf-img img {
+        width: 150px;
+    }
+
+    /* ปุ่ม */
+    .text-btn {
+        display: block;
+    }
+
+    .text-btn a {
+        display: inline-block;
+        margin: 5px;
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+
+    /* ABOUT */
+    .container-aboutme {
+        display: block;
+        padding: 0 10px;
+        text-align: center;
+    }
+
+    .about-img img {
+        width: 150px;
+    }
+
+    .abouttext h2 {
+        font-size: 18px;
+    }
+
+    .abouttext p {
+        font-size: 12px;
+    }
+
+    /* NAV */
+    nav {
+        padding: 8px 10px;
+    }
+
+    .menu {
+        display: block;
+        text-align: center;
+    }
+
+    .menu li {
+        margin: 8px 0;
+    }
+
 }
 
 @media (max-width: 768px) {
 
+    
      nav {
         margin: 0;
         padding: 10px 15px;
