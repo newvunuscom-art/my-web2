@@ -9,7 +9,7 @@ html {
 section {
     scroll-margin-top: 80px; 
 }
-@media (max-width: 350px) {
+@media (max-width: 360px) {
   
 
     nav {
