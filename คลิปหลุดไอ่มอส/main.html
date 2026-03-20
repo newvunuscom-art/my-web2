@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>มอสดอทคอม</title>
+
+<style>
+body {
+  background:#2b0a2f;
+  color:white;
+  font-family:sans-serif;
+  margin:0;
+}
+
+.container {
+  width:95%;
+  margin:auto;
+}
+
+/* HEADER */
+.header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 0;
+}
+
+input {
+  padding:8px;
+  border-radius:5px;
+  border:none;
+}
+
+/* GRID */
+.video-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:15px;
+}
+
+/* CARD */
+.card {
+  background:#3a123f;
+  padding:10px;
+  border-radius:10px;
+}
+
+/* THUMB */
+.thumbnail {
+  position:relative;
+  overflow:hidden;
+}
+
+.thumbnail img,
+.thumbnail video {
+  width:100%;
+  border-radius:10px;
+}
+
+/* PREVIEW */
+.preview {
+  position:absolute;
+  top:0;
+  left:0;
+  display:none;
+}
+
+.card:hover .preview {
+  display:block;
+}
+
+.card:hover img {
+  opacity:0;
+}
+
+/* PLAY */
+.play-btn {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  background:rgba(0,0,0,0.6);
+  border:none;
+  color:white;
+  font-size:24px;
+  padding:10px;
+  border-radius:50%;
+  cursor:pointer;
+}
+
+/* PLAYER PAGE */
+#playerPage {
+  display:none;
+}
+
+.main-layout {
+  display:flex;
+  gap:20px;
+  margin-top:20px;
+}
+
+.main-video {
+  flex:2;
+}
+
+#mainVideo {
+  width:100%;
+  border-radius:10px;
+}
+
+.side-list {
+  flex:1;
+  max-height:80vh;
+  overflow-y:auto;
+}
+
+.side-card {
+  display:flex;
+  gap:10px;
+  margin-bottom:10px;
+  cursor:pointer;
+  background:#3a123f;
+  padding:5px;
+  border-radius:8px;
+}
+
+.side-card img {
+  width:120px;
+  border-radius:5px;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .main-layout {
+    flex-direction:column;
+  }
+}
+
+@media(max-width:480px){
+  .video-grid {
+    grid-template-columns:1fr 1fr;
+  }
+}
+/* ทำให้วิดีโอเป็นแนวนอน 16:9 */
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 */
+}
+
+.video-wrapper video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+  <div class="container header">
+    <h2>คลิปหลุดมอส</h2>
+    <input type="text" id="search" placeholder="ค้นหา...">
+  </div>
+</header>
+
+<!-- 🎬 PLAYER PAGE -->
+<section class="container" id="playerPage">
+  <button onclick="closePlayer()">⬅ กลับ</button>
+
+  <div class="main-layout">
+    <div class="main-video">
+      <div class="video-wrapper">
+  <video id="mainVideo" controls></video>
+</div>
+      <h3 id="mainTitle"></h3>
+    </div>
+
+    <div class="side-list" id="sideList"></div>
+  </div>
+</section>
+
+<!-- 📺 GRID -->
+<section class="container">
+  <div class="video-grid" id="videoList"></div>
+</section>
+
+<script>
+// 📦 ข้อมูล
+const videos = [
+ {
+    title: "คลิปหลุดมอสเด็ดๆ",
+    image: "125973db-2522-46a9-bac2-883c1e3bc973.jpg",
+    video: "8dd4eef2-fd28-40e9-9fe9-9b258cd5bdc7.mp4"
+  },
+  {
+    title: "มอสเปโดเด็ก",
+    image: "125973db-2522-46a9-bac2-883c1e3bc973.jpg",
+    video: "5b95b2ec-0a74-4837-8e2a-64f08de9a43b.mp4"
+  },
+{
+    title: "มอสโดนเก",
+    image: "125973db-2522-46a9-bac2-883c1e3bc973.jpg",
+    video: "9326e563-0da2-4075-b0ca-5ece8cd68ca1.mp4"
+  },
+    {
+    title: "ไอ้มอสเปโด",
+    image: "125973db-2522-46a9-bac2-883c1e3bc973.jpg",
+    video: "8dd4eef2-fd28-40e9-9fe9-9b258cd5bdc7.mp4"
+  },
+  {
+    title: "หลุดมอสโดนนะเกย์ในห้องคอม",
+    image: "125973db-2522-46a9-bac2-883c1e3bc973.jpg",
+    video: "5b95b2ec-0a74-4837-8e2a-64f08de9a43b.mp4"
+  },
+{
+    title: "มอสโดนเก",
+    image: "125973db-2522-46a9-bac2-883c1e3bc973.jpg",
+    video: "9326e563-0da2-4075-b0ca-5ece8cd68ca1.mp4"
+  },
+    {
+    title: "คลิปหลุดมอสเด็ดๆ",
+    image: "125973db-2522-46a9-bac2-883c1e3bc973.jpg",
+    video: "8dd4eef2-fd28-40e9-9fe9-9b258cd5bdc7.mp4"
+  },
+  {
+    title: "มอสเปโดเด็ก",
+    image: "125973db-2522-46a9-bac2-883c1e3bc973.jpg",
+    video: "5b95b2ec-0a74-4837-8e2a-64f08de9a43b.mp4"
+  },
+{
+    title: "มอสโดนเก",
+    image: "125973db-2522-46a9-bac2-883c1e3bc973.jpg",
+    video: "9326e563-0da2-4075-b0ca-5ece8cd68ca1.mp4"
+  },
+  {
+    title: "มอสโดนเก",
+    image: "125973db-2522-46a9-bac2-883c1e3bc973.jpg",
+    video: "9326e563-0da2-4075-b0ca-5ece8cd68ca1.mp4"
+  },
+
+];
+
+// 🎬 เปิดจอใหญ่
+function openPlayer(index){
+  const v = videos[index];
+
+  document.getElementById("playerPage").style.display = "block";
+  document.getElementById("videoList").style.display = "none";
+
+  const mainVideo = document.getElementById("mainVideo");
+  const title = document.getElementById("mainTitle");
+
+  mainVideo.src = v.video;
+  title.innerText = v.title;
+
+  mainVideo.play();
+
+  renderSide(index);
+}
+
+// 🔙 กลับ
+function closePlayer(){
+  const mainVideo = document.getElementById("mainVideo");
+
+  // ⛔ หยุดวิดีโอ
+  mainVideo.pause();
+  mainVideo.currentTime = 0; // รีเซ็ตเวลา (สำคัญ)
+
+  // ซ่อนหน้า player
+  document.getElementById("playerPage").style.display = "none";
+  document.getElementById("videoList").style.display = "grid";
+}
+
+// 📺 sidebar
+function renderSide(currentIndex){
+  const side = document.getElementById("sideList");
+  side.innerHTML = "";
+
+  videos.forEach((v,i)=>{
+    if(i !== currentIndex){
+      side.innerHTML += `
+        <div class="side-card" data-index="${i}">
+          <img src="${v.image}">
+          <p>${v.title}</p>
+        </div>
+      `;
+    }
+  });
+
+  document.querySelectorAll('.side-card').forEach(card=>{
+    card.onclick = ()=>{
+      openPlayer(card.dataset.index);
+    };
+  });
+}
+
+// 🎬 render grid
+function render(list){
+  const container = document.getElementById("videoList");
+  container.innerHTML = "";
+
+  list.forEach((v,index)=>{
+    container.innerHTML += `
+      <div class="card" data-index="${index}">
+        <div class="thumbnail">
+          <img src="${v.image}">
+          <video class="preview">
+            <source src="${v.video}">
+          </video>
+          <button class="play-btn">▶</button>
+        </div>
+        <p>${v.title}</p>
+      </div>
+    `;
+  });
+
+  setupEvents();
+}
+
+// 🎮 events
+function setupEvents(){
+  document.querySelectorAll('.card').forEach(card=>{
+    const index = card.dataset.index;
+    const btn = card.querySelector('.play-btn');
+    const preview = card.querySelector('.preview');
+
+    btn.onclick = ()=> openPlayer(index);
+
+    card.onmouseenter = ()=> preview.play();
+    card.onmouseleave = ()=>{
+      preview.pause();
+      preview.currentTime = 0;
+    };
+  });
+}
+
+// 🔍 search
+document.getElementById("search").addEventListener("input", function(){
+  const value = this.value.toLowerCase();
+  const filtered = videos.filter(v=>v.title.toLowerCase().includes(value));
+  render(filtered);
+});
+
+// เริ่มต้น
+render(videos);
+
+</script>
+
+</body>
+</html>

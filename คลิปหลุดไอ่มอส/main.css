@@ -1,0 +1,84 @@
+
+
+body {
+  background: #2b0a2f;
+  color: white;
+  font-family: sans-serif;
+}
+
+.container {
+  width: 95%;
+  margin: auto;
+}
+
+/* grid */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px,1fr));
+  gap: 15px;
+}
+
+/* card */
+.card {
+  background: #3a123f;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* thumbnail */
+.thumbnail {
+  position: relative;
+  overflow: hidden;
+}
+
+.thumbnail img,
+.thumbnail video {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* preview video */
+.preview {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+}
+
+/* play button */
+.play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background: rgba(0,0,0,0.6);
+  border: none;
+  color: white;
+  font-size: 24px;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* real video */
+.video-player {
+  display: none;
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* hover preview */
+.card:hover .preview {
+  display: block;
+}
+
+.card:hover img {
+  opacity: 0;
+}
+
+/* 📱 MOBILE */
+@media (max-width: 480px){
+  .video-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
