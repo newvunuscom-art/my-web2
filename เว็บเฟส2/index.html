@@ -9,12 +9,13 @@
 <body>
     <header>
         <nav>
+            
             <div class="logo">
                 <a href="#"><img src="1000006446_e5da4ed4f688f154f6b25ec306ad73d3-18_6_2567-18_13_23-Photoroom-Photoroom.svg"alt="" width="70px" height="70px"></a>
             </div>
             <div class="container">
                 <div class="nav-wrapper">
-                    <ul class="menu">
+                    <ul class="menu" id="menu">
                         <li><a href="#Home">Home</a></li>
                         <li><a href="#Aboutme">About me</a></li>
                         <li><a href="#Portfolio">Portfolio</a></li>
@@ -22,6 +23,7 @@
                     </ul>
                 </div>
             </div>
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
         </nav>
     </header>
 
@@ -129,6 +131,9 @@ window.addEventListener("scroll", function() {
     const header = document.querySelector("header");
     header.classList.toggle("scrolled", window.scrollY > 50);
 });
+    function toggleMenu() {
+    document.getElementById("menu").classList.toggle("active");
+    }
 </script>
 </body>
 </html>
