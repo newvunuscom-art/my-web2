@@ -138,7 +138,7 @@ nav .menu :hover{
 }
 
 /* ===== MOBILE 360px ===== */
-@media (max-width: 360px) {
+@media (max-width: 380px) {
 
     /* แสดง hamburger */
     .hamburger {
